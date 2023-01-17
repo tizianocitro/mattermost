@@ -7,7 +7,5 @@
 # Jetbrains
 .idea/
 
-plugin-documentation
-backup
 build/logs
 build/plugins
