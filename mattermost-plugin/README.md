@@ -1,5 +1,5 @@
 # Mattermost Plugin
-This plugin serves as a first approiach to Mattermost plugin.
+This plugin serves as a first approach to Mattermost plugin.
 
 More on plugins: [plugin documentation](https://developers.mattermost.com/extend/plugins/).
 
