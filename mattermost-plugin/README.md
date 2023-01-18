@@ -1,32 +1,28 @@
-# Plugin Starter Template [![CircleCI branch](https://img.shields.io/circleci/project/github/mattermost/mattermost-plugin-starter-template/master.svg)](https://circleci.com/gh/mattermost/mattermost-plugin-starter-template)
+# Mattermost Plugin
+This plugin serves as a first approiach to Mattermost plugin.
 
-This plugin serves as a starting point for writing a Mattermost plugin. Feel free to base your own plugin off this repository.
-
-To learn more about plugins, see [our plugin documentation](https://developers.mattermost.com/extend/plugins/).
+More on plugins: [plugin documentation](https://developers.mattermost.com/extend/plugins/).
 
 ## Getting Started
-Use GitHub's template feature to make a copy of this repository by clicking the "Use this template" button.
-
-Alternatively shallow clone the repository matching your plugin name:
+Create a new plugin from scratch:
 ```
-git clone --depth 1 https://github.com/mattermost/mattermost-plugin-starter-template com.example.my-plugin
+git clone --depth 1 https://github.com/mattermost/mattermost-plugin-starter-template com.example.plugin
 ```
-
-Note that this project uses [Go modules](https://github.com/golang/go/wiki/Modules). Be sure to locate the project outside of `$GOPATH`.
+Replace `com.example.plugin` with the name you want for your plugin.
 
 Edit the following files:
 1. `plugin.json` with your `id`, `name`, and `description`:
 ```
 {
-    "id": "com.example.my-plugin",
-    "name": "My Plugin",
-    "description": "A plugin to enhance Mattermost."
+    "id": "com.example.plugin",
+    "name": "Example Plugin",
+    "description": "An exmaple plugin."
 }
 ```
 
 2. `go.mod` with your Go module path, following the `<hosting-site>/<repository>/<module>` convention:
 ```
-module github.com/example/my-plugin
+module github.com/tizianocitro/plugin
 ```
 
 3. `.golangci.yml` with your Go module path:
@@ -34,23 +30,23 @@ module github.com/example/my-plugin
 linters-settings:
   # [...]
   goimports:
-    local-prefixes: github.com/example/my-plugin
+    local-prefixes: github.com/tizianocitro/plugin
 ```
 
-Build your plugin:
+Build the plugin:
 ```
 make
 ```
 
-This will produce a single plugin file (with support for multiple architectures) for upload to your Mattermost server:
+This will produce a single plugin file - with support for multiple architectures - for upload to the Mattermost server:
 
 ```
-dist/com.example.my-plugin.tar.gz
+dist/com.example.plugin.tar.gz
 ```
 
 ## Development
 
-To avoid having to manually install your plugin, build and deploy your plugin using one of the following options. In order for the below options to work, you must first enable plugin uploads via your config.json or API and restart Mattermost.
+To avoid having to manually install the plugin, build and deploy it using one of the following options. In order for the below options to work, enable plugin uploads via config.json or API and restart the Mattermost server.
 
 ```json
     "PluginSettings" : {
@@ -61,7 +57,7 @@ To avoid having to manually install your plugin, build and deploy your plugin us
 
 ### Deploying with Local Mode
 
-If your Mattermost server is running locally, you can enable [local mode](https://docs.mattermost.com/administration/mmctl-cli-tool.html#local-mode) to streamline deploying your plugin. Edit your server configuration as follows:
+If the Mattermost server is running locally, it is possible to enable [local mode](https://docs.mattermost.com/administration/mmctl-cli-tool.html#local-mode) to streamline deploying the plugin. Edit the server configuration as follows:
 
 ```json
 {
@@ -73,12 +69,12 @@ If your Mattermost server is running locally, you can enable [local mode](https:
 }
 ```
 
-and then deploy your plugin:
+and then deploy the plugin:
 ```
 make deploy
 ```
 
-You may also customize the Unix socket path:
+The Unix socket path can be customized:
 ```
 export MM_LOCALSOCKETPATH=/var/tmp/alternate_local.socket
 make deploy
@@ -87,16 +83,16 @@ make deploy
 If developing a plugin with a webapp, watch for changes and deploy those automatically:
 ```
 export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_TOKEN=j44acwd8obn78cdcx7koid4jkr
+export MM_ADMIN_TOKEN=access-token
 make watch
 ```
 
 ### Deploying with credentials
 
-Alternatively, you can authenticate with the server's API with credentials:
+Alternatively, authenticate with the server's API with credentials:
 ```
 export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_USERNAME=admin
+export MM_ADMIN_USERNAME=username
 export MM_ADMIN_PASSWORD=password
 make deploy
 ```
@@ -104,19 +100,17 @@ make deploy
 or with a [personal access token](https://docs.mattermost.com/developer/personal-access-tokens.html):
 ```
 export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_TOKEN=j44acwd8obn78cdcx7koid4jkr
+export MM_ADMIN_TOKEN=personal-access-token
 make deploy
 ```
 
-## Q&A
+## Make a server-only or web app-only plugin
 
-### How do I make a server-only or web app-only plugin?
+Delete the `server` or `webapp` folders and remove the corresponding sections from `plugin.json`. The build scripts will skip the missing portions automatically.
 
-Simply delete the `server` or `webapp` folders and remove the corresponding sections from `plugin.json`. The build scripts will skip the missing portions automatically.
+### How to include assets in the plugin bundle
 
-### How do I include assets in the plugin bundle?
-
-Place them into the `assets` directory. To use an asset at runtime, build the path to your asset and open as a regular file:
+Place them into the `assets` directory. To use an asset at runtime, build the path to the asset and open as a regular file:
 
 ```go
 bundlePath, err := p.API.GetBundlePath()
@@ -124,15 +118,15 @@ if err != nil {
     return errors.Wrap(err, "failed to get bundle path")
 }
 
-profileImage, err := ioutil.ReadFile(filepath.Join(bundlePath, "assets", "profile_image.png"))
+image, err := ioutil.ReadFile(filepath.Join(bundlePath, "assets", "image.png"))
 if err != nil {
-    return errors.Wrap(err, "failed to read profile image")
+    return errors.Wrap(err, "failed to read image")
 }
 
-if appErr := p.API.SetProfileImage(userID, profileImage); appErr != nil {
-    return errors.Wrap(err, "failed to set profile image")
+if appErr := p.API.SetProfileImage(userID, image); appErr != nil {
+    return errors.Wrap(err, "failed to set image")
 }
 ```
 
-### How do I build the plugin with unminified JavaScript?
-Setting the `MM_DEBUG` environment variable will invoke the debug builds. The simplist way to do this is to simply include this variable in your calls to `make` (e.g. `make dist MM_DEBUG=1`).
+### Build the plugin with unminified JS
+Setting the `MM_DEBUG` environment variable will invoke the debug builds. The simplist way to do this is to simply include this variable in calls to `make` (e.g. `make dist MM_DEBUG=1`).
