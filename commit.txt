@@ -1,2 +1,0 @@
-Just a commit file for testing authentication within the dev container.
-It'll be removed as soon as the test is successful.
