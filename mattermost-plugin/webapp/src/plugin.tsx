@@ -8,6 +8,8 @@ import RHSView from './components/right_hand_sidebar';
 import UserActions from './components/user_actions';
 import CustomRoute from './components/custom_route';
 import LeftSidebarHeader from './components/left_sidebar_header';
+import UserAttributes from './components/user_attributes';
+import LinkTooltip from './components/link_tooltip';
 
 import {ChannelHeaderButtonIcon, MainMenuMobileIcon} from './components/icons';
 import {
@@ -43,6 +45,13 @@ export default class Plugin {
             (channelId: any) => store.dispatch(channelHeaderMenuAction(channelId)),
             <MainMenuMobileIcon/>,
         );
+        registry.registerPostDropdownMenuAction(
+            <FormattedMessage
+                id='plugin.name'
+                defaultMessage='Mattermost Plugin'
+            />,
+            () => store.dispatch(postDropdownMenuAction()),
+        );
         const {toggleRHSPlugin} = registry.registerRightHandSidebarComponent(
             RHSView,
             <FormattedMessage
@@ -62,15 +71,10 @@ export default class Plugin {
                 defaultMessage='Mattermost Plugin'
             />,
         );
-        registry.registerPostDropdownMenuAction(
-            <FormattedMessage
-                id='plugin.name'
-                defaultMessage='Mattermost Plugin'
-            />,
-            () => store.dispatch(postDropdownMenuAction()),
-        );
         registry.registerPopoverUserActionsComponent(UserActions);
+        registry.registerPopoverUserAttributesComponent(UserAttributes);
         registry.registerLeftSidebarHeaderComponent(LeftSidebarHeader);
+        registry.registerLinkTooltipComponent(LinkTooltip);
         registry.registerCustomRoute('/customroute', CustomRoute);
         registry.registerReducer(reducer);
 
