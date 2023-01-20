@@ -548,7 +548,11 @@
                 "udpserverport": 8443
             },
             "playbooks": {
-                "BotUserID": "a9ykq4htofbwjrcgndozp5dztw"
+                "BotUserID": "a9ykq4htofbwjrcgndozp5dztw",
+                "enableexperimentalfeatures": false
+            },
+            "playbooks-by-me": {
+                "enableexperimentalfeatures": null
             }
         },
         "PluginStates": {
@@ -571,6 +575,9 @@
                 "Enable": true
             },
             "playbooks": {
+                "Enable": true
+            },
+            "playbooks-by-me": {
                 "Enable": true
             }
         },

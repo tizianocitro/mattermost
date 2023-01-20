@@ -11,14 +11,19 @@ RUN apt-get install -y \
     nano vim \
     npm nodejs python2
 
+# To install another Node version
+RUN npm install -g n
+RUN n 16.4.0
+RUN npm install -g npm@7.0.0
+
 RUN apt-get upgrade -y
 
 # Install Go
 RUN cd /tmp
-RUN wget https://dl.google.com/go/go1.16.linux-amd64.tar.gz
-RUN tar -xvf go1.16.linux-amd64.tar.gz
+RUN wget https://dl.google.com/go/go1.18.linux-amd64.tar.gz
+RUN tar -xvf go1.18.linux-amd64.tar.gz
 RUN mv go ../usr/local/
-RUN rm go1.16.linux-amd64.tar.gz
+RUN rm go1.18.linux-amd64.tar.gz
 
 ENV GOROOT=/usr/local/go
 ENV GOPATH=$HOME/go
