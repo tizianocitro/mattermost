@@ -100,7 +100,9 @@
         "ThreadAutoFollow": true,
         "CollapsedThreads": "always_on",
         "ManagedResourcePaths": "",
-        "EnableCustomGroups": true
+        "EnableCustomGroups": true,
+        "SelfHostedPurchase": true,
+        "AllowSyncedDrafts": true
     },
     "TeamSettings": {
         "SiteName": "Mattermost",
@@ -114,6 +116,7 @@
         "CustomBrandText": "",
         "CustomDescriptionText": "",
         "RestrictDirectMessage": "any",
+        "EnableLastActiveTime": true,
         "UserStatusAwayTimeout": 300,
         "MaxChannelsPerTeam": 2000,
         "MaxNotificationsPerChannel": 1000,
@@ -158,6 +161,7 @@
         "FileLocation": "",
         "EnableWebhookDebugging": true,
         "EnableDiagnostics": true,
+        "VerboseDiagnostics": false,
         "EnableSentry": true,
         "AdvancedLoggingConfig": ""
     },
@@ -458,10 +462,10 @@
         "LinkMetadataTimeoutMilliseconds": 5000,
         "RestrictSystemAdmin": false,
         "UseNewSAMLLibrary": false,
-        "CloudBilling": false,
         "EnableSharedChannels": false,
         "EnableRemoteClusterService": false,
-        "EnableAppBar": false
+        "EnableAppBar": false,
+        "PatchPluginsReactDOM": false
     },
     "AnalyticsSettings": {
         "MaxUsersForStatistics": 2500
@@ -527,6 +531,9 @@
         "CleanupJobsThresholdDays": -1,
         "CleanupConfigThresholdDays": -1
     },
+    "ProductSettings": {
+        "EnablePublicSharedBoards": false
+    },
     "PluginSettings": {
         "Enable": true,
         "EnableUploads": true,
@@ -547,12 +554,12 @@
                 "turnstaticauthsecret": "",
                 "udpserverport": 8443
             },
+            "mattermost-product": {
+                "enableexperimentalfeatures": null
+            },
             "playbooks": {
                 "BotUserID": "a9ykq4htofbwjrcgndozp5dztw",
                 "enableexperimentalfeatures": false
-            },
-            "playbooks-by-me": {
-                "enableexperimentalfeatures": null
             }
         },
         "PluginStates": {
@@ -574,10 +581,10 @@
             "mattermost-plugin": {
                 "Enable": true
             },
-            "playbooks": {
+            "mattermost-product": {
                 "Enable": true
             },
-            "playbooks-by-me": {
+            "playbooks": {
                 "Enable": true
             }
         },
