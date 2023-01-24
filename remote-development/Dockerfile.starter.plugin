@@ -13,6 +13,9 @@ RUN apt-get install -y \
 
 RUN apt-get upgrade -y
 
+# Install eslint
+RUN npm install -g eslint
+
 # Install Go
 RUN cd /tmp
 RUN wget https://dl.google.com/go/go1.16.linux-amd64.tar.gz
