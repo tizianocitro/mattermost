@@ -3,7 +3,9 @@
 echo "Stopping docker-compose if running."
 docker-compose down
 
-DIR=./build/plugins/mattermost-product
+PLUGIN_NAME=mattermost-product
+
+DIR=./build/plugins/$PLUGIN_NAME
 echo "Checking if the $DIR directory exists."
 if [ -d "$DIR" ];
 then
@@ -15,7 +17,7 @@ else
 fi
 
 CONTAINER_NAME=mm-ubuntu-upgrated
-CONTAINER_PLUGIN_DIR=/home/mattermost-product/dist/mattermost-product
+CONTAINER_PLUGIN_DIR=/home/$PLUGIN_NAME/dist/$PLUGIN_NAME
 HOST_PLUGIN_DIR=./build/plugins/
 echo "Copying pluging from $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR to $HOST_PLUGIN_DIR."
 docker cp $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR $HOST_PLUGIN_DIR
