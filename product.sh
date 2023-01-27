@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "Stopping docker-compose if running."
-docker-compose down
-
 PLUGIN_NAME=mattermost-product
 CONTAINER_NAME=mm-ubuntu-upgrated
 
@@ -19,6 +16,9 @@ if [ -z "$2" ]
   else
     CONTAINER_NAME=$2
 fi
+
+echo "Stopping docker-compose if running."
+docker-compose down
 
 DIR=./build/plugins/$PLUGIN_NAME
 echo "Checking if the $DIR directory exists."
