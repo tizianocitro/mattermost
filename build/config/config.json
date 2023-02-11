@@ -575,6 +575,9 @@
             "com.mattermost.plugin-channel-export": {
                 "Enable": true
             },
+            "cs-aware-connect": {
+                "Enable": true
+            },
             "focalboard": {
                 "Enable": true
             },
@@ -582,7 +585,7 @@
                 "Enable": true
             },
             "mattermost-product": {
-                "Enable": true
+                "Enable": false
             },
             "playbooks": {
                 "Enable": true
