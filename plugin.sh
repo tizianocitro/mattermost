@@ -39,3 +39,6 @@ echo "Copy completed."
 
 echo "Starting docker-compose if running."
 docker-compose up -d
+
+echo "Cleaning up older volumes"
+docker volume prune -f

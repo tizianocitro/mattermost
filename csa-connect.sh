@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PLUGIN_NAME=mattermost-product
+PLUGIN_NAME=cs-aware-connect
 CONTAINER_NAME=mm-ubuntu-upgrated
 
 if [ -z "$1" ]
@@ -31,7 +31,8 @@ else
     echo "$DIR directory does not exist. No need to remove it."
 fi
 
-CONTAINER_PLUGIN_DIR=/home/$PLUGIN_NAME/dist/$PLUGIN_NAME
+PLUGIN_DIR=csa-connect
+CONTAINER_PLUGIN_DIR=/home/$PLUGIN_DIR/dist/$PLUGIN_NAME
 HOST_PLUGIN_DIR=./build/plugins/
 echo "Copying pluging from $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR to $HOST_PLUGIN_DIR."
 docker cp $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR $HOST_PLUGIN_DIR
