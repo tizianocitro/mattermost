@@ -16,7 +16,7 @@ RUN apt-get upgrade -y
 # Install another Node version
 RUN npm install -g n
 RUN n 16.4.0
-RUN npm install -g npm@7.0.0
+RUN npm install -g npm
 
 # Install eslint
 RUN npm install -g eslint
