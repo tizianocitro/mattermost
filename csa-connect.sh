@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PLUGIN_NAME=cs-aware-connect
-CONTAINER_NAME=mm-ubuntu-upgrated
+CONTAINER_NAME=mm-ubuntu
 
 if [ -z "$1" ]
   then
@@ -18,7 +18,7 @@ if [ -z "$2" ]
 fi
 
 echo "Stopping docker-compose if running."
-docker-compose down
+docker compose down
 
 DIR=./build/plugins/$PLUGIN_NAME
 echo "Checking if the $DIR directory exists."
@@ -33,13 +33,13 @@ fi
 
 PLUGIN_DIR=csa-connect
 CONTAINER_PLUGIN_DIR=/home/$PLUGIN_DIR/dist/$PLUGIN_NAME
-HOST_PLUGIN_DIR=./build/plugins/
+HOST_PLUGIN_DIR=./build/plugins/$PLUGIN_NAME
 echo "Copying pluging from $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR to $HOST_PLUGIN_DIR."
 docker cp $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR $HOST_PLUGIN_DIR
 echo "Copy completed."
 
 echo "Starting docker-compose if running."
-docker-compose up -d
+docker compose up -d
 
 echo "Cleaning up older volumes"
 docker volume prune -f

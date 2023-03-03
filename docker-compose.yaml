@@ -48,7 +48,7 @@ services:
       - mattermost
   csa:
     container_name: csa
-    image: "csa-server"
+    image: "tizianocitro/csa-server"
     restart: "unless-stopped"
     ports:
       - "3000:3000"
