@@ -7,9 +7,9 @@ services:
     depends_on:
       - "db"
     volumes:
-      - "./build/logs:/mattermost/logs:rw"
-      - "./build/plugins:/mattermost/plugins:rw"
-      - "./build/config/config.json:/mattermost/config/config.json"
+      - "../../build/logs:/mattermost/logs:rw"
+      - "../../build/plugins:/mattermost/plugins:rw"
+      - "../../build/config/config.json:/mattermost/config/config.json"
     ports:
       - "8065:8065"
     networks:
@@ -44,6 +44,14 @@ services:
        - "pgadmin:/var/lib/pgadmin"
     ports:
       - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - mattermost
+  csa:
+    container_name: csa
+    image: "tizianocitro/csa-server"
+    restart: "unless-stopped"
+    ports:
+      - "3000:3000"
     networks:
       - mattermost
 volumes:
