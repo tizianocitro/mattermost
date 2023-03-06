@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PLUGIN_NAME=mattermost-plugin
-CONTAINER_NAME=mm-ubuntu
+PLUGIN_NAME=cs-aware-connect
+CONTAINER_NAME=mm-ubuntu-upgrated
 
 if [ -z "$1" ]
   then
@@ -21,8 +21,8 @@ echo "Stopping containers if running."
 docker-compose down
 echo "Containers stopped."
 
-DIR=../build/plugins/$PLUGIN_NAME
-echo "Checking if the $DIR directory exists..."
+DIR=../../build/plugins/$PLUGIN_NAME
+echo "Checking if the $DIR directory exist..."
 if [ -d "$DIR" ];
 then
     echo "$DIR directory exists. Removing directory..."
@@ -32,13 +32,14 @@ else
     echo "$DIR directory does not exist. No need to remove it."
 fi
 
-CONTAINER_PLUGIN_DIR=/home/mattermost$PLUGIN_NAME/dist/$PLUGIN_NAME
-HOST_PLUGIN_DIR=./build/plugins/
+PLUGIN_DIR=csa-connect
+CONTAINER_PLUGIN_DIR=/home/$PLUGIN_DIR/dist/$PLUGIN_NAME
+HOST_PLUGIN_DIR=../../build/plugins/$PLUGIN_NAME
 echo "Copying pluging from $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR to $HOST_PLUGIN_DIR."
 docker cp $CONTAINER_NAME:$CONTAINER_PLUGIN_DIR $HOST_PLUGIN_DIR
 echo "Copy completed."
 
-echo "Starting containers."
+echo "Starting containers..."
 docker-compose up -d
 echo "Containers started."
 
