@@ -554,9 +554,6 @@
                 "turnstaticauthsecret": "",
                 "udpserverport": 8443
             },
-            "mattermost-product": {
-                "enableexperimentalfeatures": null
-            },
             "playbooks": {
                 "BotUserID": "zip6zees6fdtbfd7uemprc8sgw"
             }
@@ -579,12 +576,6 @@
             },
             "focalboard": {
                 "Enable": true
-            },
-            "mattermost-plugin": {
-                "Enable": true
-            },
-            "mattermost-product": {
-                "Enable": false
             },
             "playbooks": {
                 "Enable": true
