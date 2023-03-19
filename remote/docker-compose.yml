@@ -2,14 +2,15 @@ version: "3.9"
 services:
   mattermost:
     container_name: "mattermost"
-    image: "mattermost/mattermost-enterprise-edition:7.7.0"
+    image: "mattermost/mattermost-enterprise-edition:7.8.0"
     restart: "unless-stopped"
     depends_on:
       - "db"
+      - "cs-data-provider"
     volumes:
-      - "../../build/logs:/mattermost/logs:rw"
-      - "../../build/plugins:/mattermost/plugins:rw"
-      - "../../build/config/config.json:/mattermost/config/config.json"
+      - "../config/logs:/mattermost/logs:rw"
+      - "../config/plugins:/mattermost/plugins:rw"
+      - "../config/config/config.json:/mattermost/config/config.json"
     ports:
       - "8065:8065"
     networks:
@@ -46,9 +47,9 @@ services:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
       - mattermost
-  csa:
-    container_name: csa
-    image: "tizianocitro/csa-server"
+  cs-data-provider:
+    container_name: cs-data-provider
+    image: "csconnect/cs-data-provider"
     restart: "unless-stopped"
     ports:
       - "3000:3000"

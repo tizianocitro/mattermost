@@ -89,7 +89,7 @@
         "EnableSVGs": false,
         "EnableLatex": false,
         "EnableInlineLatex": true,
-        "PostPriority": false,
+        "PostPriority": true,
         "EnableAPIChannelDeletion": false,
         "EnableLocalMode": true,
         "LocalModeSocketLocation": "/var/tmp/mattermost_local.socket",
@@ -108,7 +108,7 @@
         "SiteName": "Mattermost",
         "MaxUsersPerTeam": 50,
         "EnableUserCreation": true,
-        "EnableOpenServer": false,
+        "EnableOpenServer": true,
         "EnableUserDeactivation": false,
         "RestrictCreationToDomains": "",
         "EnableCustomUserStatuses": true,
@@ -491,6 +491,9 @@
         "BatchSize": 10000,
         "RequestTimeoutSeconds": 30,
         "SkipTLSVerification": false,
+        "CA": "",
+        "ClientCert": "",
+        "ClientKey": "",
         "Trace": ""
     },
     "BleveSettings": {
@@ -555,7 +558,7 @@
                 "udpserverport": 8443
             },
             "playbooks": {
-                "BotUserID": "ojecz5wh53gsjni1jeiogri46y"
+                "BotUserID": "gz5zm8ajbprcjdwyyqnj8ko34a"
             }
         },
         "PluginStates": {

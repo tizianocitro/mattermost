@@ -7,5 +7,5 @@
 # Jetbrains
 .idea/
 
-build/logs
-build/plugins
+config/logs
+config/plugins
