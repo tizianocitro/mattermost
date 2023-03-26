@@ -2,7 +2,7 @@ version: "3.9"
 services:
   mattermost:
     container_name: "mattermost"
-    image: "csanext/mattermost"
+    image: "csconnect/mattermost"
     restart: "unless-stopped"
     depends_on:
       - "db"
